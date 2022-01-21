@@ -1,0 +1,16 @@
+{
+  "name": "static-lite-server-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start01": "../static-lite-server ./01-basic/config.json",
+    "test01": "npm run start01 & cypress run --spec ./cypress/integration/01.spec.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^9.3.1",
+    "wait-on": "^6.0.0"
+  }
+}

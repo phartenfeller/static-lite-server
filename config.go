@@ -16,6 +16,7 @@ type config struct {
 	Root                string        `json:"root"`
 	PathPrefix          string        `json:"pathPrefix"`
 	LogRequests         *bool         `json:"logRequests,omitempty"`
+	HeaderServerName    string        `json:"headerServerName"`
 }
 
 var ptrTrue bool = true
@@ -28,6 +29,7 @@ var defaultValues config = config{
 	Root:                "/var/www",
 	PathPrefix:          "",
 	LogRequests:         &ptrTrue,
+	HeaderServerName:    "static-lite-server:" + version,
 }
 
 func fillDefaultValues(c *config) {
@@ -48,6 +50,9 @@ func fillDefaultValues(c *config) {
 	}
 	if c.LogRequests == nil {
 		c.LogRequests = defaultValues.LogRequests
+	}
+	if c.HeaderServerName == "" {
+		c.HeaderServerName = defaultValues.HeaderServerName
 	}
 }
 

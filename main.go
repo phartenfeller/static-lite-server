@@ -10,11 +10,14 @@ import (
 	"time"
 )
 
+var gConfig *config
+
 func main() {
 	argsWithoutProg := os.Args[1:]
 	args := parseArguments(argsWithoutProg)
 
 	c, err := parseConfig(args.configFilePath)
+	gConfig = &c
 
 	if err != nil {
 		panic(err)
@@ -24,6 +27,8 @@ func main() {
 
 	var fs http.FileSystem = http.Dir(c.Root)
 	handler := http.TimeoutHandler(http.FileServer(fs), c.TimeoutMs*time.Millisecond, "Request timeout")
+
+	handler = alwaysMiddleware(handler)
 
 	if c.PathPrefix != "" {
 		handler = http.StripPrefix(c.PathPrefix, handler)

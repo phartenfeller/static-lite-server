@@ -15,3 +15,8 @@
 # vendor/
 
 static-lite-server
+**/node_modules
+test/cypress/screenshots
+test/cypress/videos
+
+**/.DS_Store
