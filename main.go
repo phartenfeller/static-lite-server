@@ -13,8 +13,8 @@ import (
 var gConfig *config
 
 func main() {
-	argsWithoutProg := os.Args[1:]
-	args := parseArguments(argsWithoutProg)
+	argsWithoutProgram := os.Args[1:]
+	args := parseArguments(argsWithoutProgram)
 
 	c, err := parseConfig(args.configFilePath)
 	gConfig = &c
@@ -26,7 +26,7 @@ func main() {
 	log.Println("Config =>", c.Port, c.Root, *c.LogRequests)
 
 	var fs http.FileSystem = http.Dir(c.Root)
-	handler := http.TimeoutHandler(http.FileServer(fs), c.TimeoutMs*time.Millisecond, "Request timeout")
+	handler := http.TimeoutHandler(customFileServer(fs), c.TimeoutMs*time.Millisecond, "Request timeout")
 
 	handler = alwaysMiddleware(handler)
 

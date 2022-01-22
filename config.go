@@ -17,6 +17,7 @@ type config struct {
 	PathPrefix          string        `json:"pathPrefix"`
 	LogRequests         *bool         `json:"logRequests,omitempty"`
 	HeaderServerName    string        `json:"headerServerName"`
+	NotFoundPage        string        `json:"NotFoundPage"`
 }
 
 var ptrTrue bool = true
