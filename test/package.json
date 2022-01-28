@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cypress": "npx cypress open",
     "start01": "../static-lite-server ./01-basic/config.json",
     "test01": "npm run start01 & cypress run --spec ./cypress/integration/01.spec.js"
   },
